@@ -1,0 +1,658 @@
+
+ ███            █████████  ██████████ ██████   ██████ █████ ██████   █████ █████
+░░░███         ███░░░░░███░░███░░░░░█░░██████ ██████ ░░███ ░░██████ ░░███ ░░███
+  ░░░███      ███     ░░░  ░███  █ ░  ░███░█████░███  ░███  ░███░███ ░███  ░███
+    ░░░███   ░███          ░██████    ░███░░███ ░███  ░███  ░███░░███░███  ░███
+     ███░    ░███    █████ ░███░░█    ░███ ░░░  ░███  ░███  ░███ ░░██████  ░███
+   ███░      ░░███  ░░███  ░███ ░   █ ░███      ░███  ░███  ░███  ░░█████  ░███
+ ███░         ░░█████████  ██████████ █████     █████ █████ █████  ░░█████ █████
+░░░            ░░░░░░░░░  ░░░░░░░░░░ ░░░░░     ░░░░░ ░░░░░ ░░░░░    ░░░░░ ░░░░░
+
+Tips for getting started:
+1. Ask questions, edit files, or run commands.
+2. Be specific for the best results.
+3. Create GEMINI.md files to customize your interactions with Gemini.
+4. /help for more information.
+
+ℹGemini CLI update available! 0.10.0 → 0.16.0
+  Installed with npm. Attempting to automatically update now...
+╭───────────────────────────────────────────────────────────────────────────────╮
+│ ✓  ReadManyFiles Will attempt to read and concatenate files using patterns:…  │
+│                                                                               │
+│                                                                               │
+│    ### ReadManyFiles Result (Target Dir:                                      │
+│    `/home/super-dev/SukiSU_KernelPatch_patch-main`)                           │
+│                                                                               │
+│    Successfully read and concatenated content from **1 file(s)**.             │
+│                                                                               │
+│    **Processed Files:**                                                       │
+│    - `bzImage`                                                                │
+╰───────────────────────────────────────────────────────────────────────────────╯
+
+> how i use thse project to patch my @bzImage which is my arcvm kernel image
+
+✕ Automatic update failed. Please try updating manually
+
+╭───────────────────────────────────────────────────────────────────────────────╮
+│ ✓  ReadFile README.md                                                         │
+╰───────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────╮
+│ ✓  ReadFile doc/en/build.md                                                   │
+╰───────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────╮
+│ ✓  ReadFile doc/en/guide.md                                                   │
+╰───────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────╮
+│ ✓  ReadFile tools/Makefile                                                    │
+╰───────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────╮
+│ ✓  Shell make [in /home/super-dev/SukiSU_KernelPatch_patch-main/tools] (Buil… │
+│                                                                               │
+│    gcc -c -std=c11 -Wall -Wextra -Wno-unused -Wno-unused-parameter  image.c   │
+│    -o image.o                                                                 │
+│    gcc -c -std=c11 -Wall -Wextra -Wno-unused -Wno-unused-parameter  kallsym.c │
+│    -o kallsym.o                                                               │
+│    gcc -c -std=c11 -Wall -Wextra -Wno-unused -Wno-unused-parameter  kptools.c │
+│    -o kptools.o                                                               │
+│    kptools.c: In function ‘main’:                                             │
+│                                                                               │
+│    kptools.c:141:23: warning: this statement may fall through                 │
+│    [-Wimplicit-fallthrough=]                                                  │
+│      141 |             root_skey = true;                                      │
+│                                                                               │
+│          |                       ^                                            │
+│                                                                               │
+│    kptools.c:142:9: note: here                                                │
+│                                                                               │
+│      142 |         case 's':                                                  │
+│                                                                               │
+│          |         ^~~~                                                       │
+│                                                                               │
+│    gcc -c -std=c11 -Wall -Wextra -Wno-unused -Wno-unused-parameter  order.c   │
+│    -o order.o                                                                 │
+│    gcc -c -std=c11 -Wall -Wextra -Wno-unused -Wno-unused-parameter  insn.c -o │
+│    insn.o                                                                     │
+│    gcc -c -std=c11 -Wall -Wextra -Wno-unused -Wno-unused-parameter  patch.c   │
+│    -o patch.o                                                                 │
+│    gcc -c -std=c11 -Wall -Wextra -Wno-unused -Wno-unused-parameter  symbol.c  │
+│    -o symbol.o                                                                │
+│    gcc -c -std=c11 -Wall -Wextra -Wno-unused -Wno-unused-parameter  kpm.c -o  │
+│    kpm.o                                                                      │
+│    gcc -c -std=c11 -Wall -Wextra -Wno-unused -Wno-unused-parameter  common.c  │
+│    -o common.o                                                                │
+│    gcc -c -std=c11 -Wall -Wextra -Wno-unused -Wno-unused-parameter  sha256.c  │
+│    -o sha256.o                                                                │
+│    gcc -o kptools image.o kallsym.o kptools.o order.o insn.o patch.o symbol.o │
+│    kpm.o common.o sha256.                                                     │
+│    o -static -lz                                                              │
+╰───────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────╮
+│ ✓  Shell ./kptools --help [in /home/super-dev/SukiSU_KernelPatch_patch-main/… │
+│                                                                               │
+│    Kernel Image Patch Tools. version: c02                                     │
+│                                                                               │
+│                                                                               │
+│                                                                               │
+│    Usage: ./kptools COMMAND [Options...]                                      │
+│                                                                               │
+│                                                                               │
+│                                                                               │
+│    COMMAND:                                                                   │
+│                                                                               │
+│      -h, --help                       Print this message.                     │
+│                                                                               │
+│      -v, --version                    Print version number. Print kpimg       │
+│    version if -k specified.                                                   │
+│      -p, --patch                      Patch or Update patch of kernel         │
+│    image(-i) with specified kpimg                                             │
+│    (-k) and superkey(-s).                                                     │
+│                                                                               │
+│      -u, --unpatch                    Unpatch patched kernel image(-i).       │
+│                                                                               │
+│      -r, --reset-skey                 Reset superkey of patched image(-i).    │
+│                                                                               │
+│      -d, --dump                       Dump kallsyms infomations of kernel     │
+│    image(-i).                                                                 │
+│      -f, --flag                       Dump ikconfig infomations of kernel     │
+│    image(-i).                                                                 │
+│      -l, --list                       Print all patch informations of kernel  │
+│    image if (-i) specified                                                    │
+│    .                                                                          │
+│                                                                               │
+│                                       Print extra item informations if (-M)   │
+│    specified.                                                                 │
+│                                       Print KernelPatch image informations if │
+│    (-k) specified.                                                            │
+│    Options:                                                                   │
+│                                                                               │
+│      -i, --image PATH                 Kernel image path.                      │
+│                                                                               │
+│      -k, --kpimg PATH                 KernelPatch image path.                 │
+│                                                                               │
+│      -s, --skey KEY                   Set the superkey and save it directly   │
+│    in the boot.img.                                                           │
+│      -S, --root-skey KEY              Set the root-superkey useing hash       │
+│    verification, and the superk                                               │
+│    ey can be changed dynamically.                                             │
+│                                                                               │
+│      -o, --out PATH                   Patched image path.                     │
+│                                                                               │
+│      -a  --addition KEY=VALUE         Add additional information.             │
+│                                                                               │
+│      -K, --kpatch PATH                Embed kpatch executable binary into     │
+│    patches.                                                                   │
+│      -M, --embed-extra-path PATH      Embed new extra item.                   │
+│                                                                               │
+│      -E, --embeded-extra-name NAME    Preserve and modifiy embedded extra     │
+│    item.                                                                      │
+│      -T, --extra-type TYPE            Set type of previous extra item.        │
+│                                                                               │
+│      -N, --extra-name NAME            Set name of previous extra item.        │
+│                                                                               │
+│      -V, --extra-event EVENT          Set trigger event of previous extra     │
+│    item.                                                                      │
+│      -A, --extra-args ARGS            Set arguments of previous extra item.   │
+│                                                                               │
+│      -D, --extra-detach               Detach previous extra item from         │
+│    patches.                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────╮
+│ ✓  SearchText 'arcvm'                                                         │
+│                                                                               │
+│    No matches found                                                           │
+╰───────────────────────────────────────────────────────────────────────────────╯
+✦ To patch your bzImage kernel image, you need to follow these steps:
+
+   1. Build the kernel patch image (`kpimg`): This component will be injected into
+      your kernel.
+   2. Build the patching tool (`kptools`): This tool performs the patching
+      operation.
+   3. Patch your kernel image: Use kptools to inject kpimg into your bzImage.
+
+  Here are the detailed commands:
+
+  1. Build kpimg
+
+  First, you need to build the kpimg. This requires the aarch64-none-elf-
+  cross-compiler. Make sure it is installed and in your PATH.
+
+  I will now run the commands to build kpimg.
+╭───────────────────────────────────────────────────────────────────────────────╮
+│ -  Shell export TARGET_COMPILE=aarch64-none-elf- && make [in /home/super-dev… │
+╰───────────────────────────────────────────────────────────────────────────────╯
+
+> it it a x86_64 bzimage
+
+✦ I see. Thank you for the clarification.
+
+  This project, SukiSU_KernelPatch_patch, only supports the arm64 architecture.
+  Your x86_64 bzImage is not compatible with it.
+
+  As stated in the README.md file:
+
+  > ## Supported Versions
+  >
+  > Currently only supports arm64 architecture.
+
+  Therefore, you will not be able to use this project to patch your x86_64 kernel
+   image.
+
+> how do i refactor the project to  supports the  x86_64 bzImage architecture and 
+  make it compatible  to patch your x86_64 kernel
+     bzimage
+
+✦ This is a significant and complex task that involves deep kernel-level
+  modifications. The project is tightly coupled with the arm64 architecture, so
+  adding x86_64 support requires substantial changes across the codebase.
+
+  I will guide you through the process, but it will be a multi-step journey.
+  Here's a high-level overview of the plan:
+
+   1. Analyze Architecture-Specific Code: We'll first identify all the parts of the
+      codebase that are specific to the arm64 architecture.
+   2. Implement `x86_64` Equivalents: For each identified part, we will need to
+      implement an equivalent for x86_64. This will involve writing new assembly ad
+       C code.
+   3. Refactor the Build System: The build scripts will need to be updated to
+      support conditional compilation for different architectures.
+
+  Let's start by identifying the arm64-specific assembly files. I'll search for
+  files with the .S extension.
+╭───────────────────────────────────────────────────────────────────────────────╮
+│ ✓  FindFiles '**/*.S'                                                         │
+│                                                                               │
+│    Found 3 matching file(s)                                                   │
+╰───────────────────────────────────────────────────────────────────────────────╯
+✦ I've found three assembly files that are written for arm64:
+
+   * kernel/base/setup1.S
+   * kernel/base/map1.S
+   * kernel/base/cache.S
+
+  These will need to be completely rewritten for x86_64.
+
+  To understand what needs to be changed, let's start by examining the contents
+  of kernel/base/setup1.S.
+╭───────────────────────────────────────────────────────────────────────────────╮
+│ ✓  ReadFile kernel/base/setup1.S                                              │
+╰───────────────────────────────────────────────────────────────────────────────╯
+✦ This file, kernel/base/setup1.S, is the entry point for the kernel patch and is
+  written entirely in arm64 assembly. It's responsible for the initial setup,
+  preparing memory maps, and hooking the kernel's paging initialization.
+
+  Here's a summary of its functions:
+
+   * `memcpy8`, `rmemcpy32`: Basic memory copy functions.
+   * `start_prepare`: Prepares data structures for the patch.
+   * `map_prepare`: Sets up memory mapping and hooks the kernel's paging_init
+     function. This is highly specific to arm64.
+   * `setup`: The main setup function that calls the preparation functions.
+   * `setup_entry`: The initial entry point of the patch.
+
+  To port this to x86_64, every function would need to be rewritten using x86_64
+  assembly, calling conventions, and memory addressing. The most complex part
+  would be rewriting map_prepare, as it involves hooking a critical part of the
+  kernel's boot process, which is fundamentally different between arm64 and
+  x86_64.
+
+  This single file demonstrates the significant effort required.
+
+  Next, I'll examine kernel/base/map1.S to see its purpose.
+╭───────────────────────────────────────────────────────────────────────────────╮
+│ ✓  ReadFile kernel/base/map1.S                                                │
+╰───────────────────────────────────────────────────────────────────────────────╯
+✦ The file kernel/base/map1.S is empty, which simplifies things slightly.
+
+  Now, let's examine the last assembly file, kernel/base/cache.S, to understand
+  its function.
+╭───────────────────────────────────────────────────────────────────────────────╮
+│ ✓  ReadFile kernel/base/cache.S                                               │
+╰───────────────────────────────────────────────────────────────────────────────╯
+✦ This file, kernel/base/cache.S, contains arm64-specific assembly code for
+  managing the CPU caches. These functions are essential for ensuring that any
+  modifications to the kernel code are correctly seen and executed by the CPU.
+
+  The functions in this file, such as flush_cache_all and flush_icache_range,
+  directly manipulate arm64 system registers and use arm64 cache maintenance
+  instructions.
+
+  Porting this to x86_64 would require a complete rewrite. x86_64 has a different
+   set of instructions for cache control (e.g., CLFLUSH, WBINVD). The entire
+  logic for cache management would need to be re-implemented from scratch to
+  match the x86_64 architecture.
+
+  All three assembly files (setup1.S, map1.S, and cache.S) are entirely
+  arm64-specific and would need to be rewritten for x86_64.
+
+  Now, I will move on to analyzing the C code to find other architecture-specific
+   parts. I'll start by searching for arm64 and aarch64 in the kernel directory.
+╭───────────────────────────────────────────────────────────────────────────────╮
+│ ✓  Shell grep -r "arm64" .                                                    │
+│    grep -r "aarch64" . [in /hom…                                              │
+│                                                                               │
+│    ... first 154 lines hidden ...                                             │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_stp_pre_value();     │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_ldp_post_value();    │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_stp_post_value();    │
+│    ./patch/module/insn.c:    insn = aarch64_insn_encode_register(AARCH64_INS  │
+│    N_REGTYPE_RT, insn, reg1);                                                 │
+│    ./patch/module/insn.c:    insn = aarch64_insn_encode_register(AARCH64_INS  │
+│    N_REGTYPE_RT2, insn, reg2);                                                │
+│    ./patch/module/insn.c:    insn = aarch64_insn_encode_register(AARCH64_INS  │
+│    N_REGTYPE_RN, insn, base);                                                 │
+│    ./patch/module/insn.c:    return aarch64_insn_encode_immediate(AARCH64_IN  │
+│    SN_IMM_7, insn, offset >> shift);                                          │
+│    ./patch/module/insn.c:u32 aarch64_insn_gen_add_sub_imm(enum aarch64_insn_  │
+│    register dst, enum aarch64_insn_register src, int imm,                     │
+│    ./patch/module/insn.c:                                 enum aarch64_insn_  │
+│    variant variant, enum aarch64_insn_adsb_type type)                         │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_add_imm_value();     │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_sub_imm_value();     │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_adds_imm_value();    │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_subs_imm_value();    │
+│    ./patch/module/insn.c:    insn = aarch64_insn_encode_register(AARCH64_INS  │
+│    N_REGTYPE_RD, insn, dst);                                                  │
+│    ./patch/module/insn.c:    insn = aarch64_insn_encode_register(AARCH64_INS  │
+│    N_REGTYPE_RN, insn, src);                                                  │
+│    ./patch/module/insn.c:    return aarch64_insn_encode_immediate(AARCH64_IN  │
+│    SN_IMM_12, insn, imm);                                                     │
+│    ./patch/module/insn.c:u32 aarch64_insn_gen_bitfield(enum aarch64_insn_reg  │
+│    ister dst, enum aarch64_insn_register src, int immr, int imms,             │
+│    ./patch/module/insn.c:                              enum aarch64_insn_var  │
+│    iant variant, enum aarch64_insn_bitfield_type type)                        │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_bfm_value();         │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_ubfm_value();        │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_sbfm_value();        │
+│    ./patch/module/insn.c:    insn = aarch64_insn_encode_register(AARCH64_INS  │
+│    N_REGTYPE_RD, insn, dst);                                                  │
+│    ./patch/module/insn.c:    insn = aarch64_insn_encode_register(AARCH64_INS  │
+│    N_REGTYPE_RN, insn, src);                                                  │
+│    ./patch/module/insn.c:    insn = aarch64_insn_encode_immediate(AARCH64_IN  │
+│    SN_IMM_R, insn, immr);                                                     │
+│    ./patch/module/insn.c:    return aarch64_insn_encode_immediate(AARCH64_IN  │
+│    SN_IMM_S, insn, imms);                                                     │
+│    ./patch/module/insn.c:u32 aarch64_insn_gen_movewide(enum aarch64_insn_reg  │
+│    ister dst, int imm, int shift, enum aarch64_insn_variant variant,          │
+│    ./patch/module/insn.c:                              enum aarch64_insn_mov  │
+│    ewide_type type)                                                           │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_movz_value();        │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_movk_value();        │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_movn_value();        │
+│    ./patch/module/insn.c:    insn = aarch64_insn_encode_register(AARCH64_INS  │
+│    N_REGTYPE_RD, insn, dst);                                                  │
+│    ./patch/module/insn.c:    return aarch64_insn_encode_immediate(AARCH64_IN  │
+│    SN_IMM_16, insn, imm);                                                     │
+│    ./patch/module/insn.c:u32 aarch64_insn_gen_add_sub_shifted_reg(enum aarch  │
+│    64_insn_register dst, enum aarch64_insn_register src,                      │
+│    ./patch/module/insn.c:                                         enum aarch  │
+│    64_insn_register reg, int shift, enum aarch64_insn_variant variant,        │
+│    ./patch/module/insn.c:                                         enum aarch  │
+│    64_insn_adsb_type type)                                                    │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_add_value();         │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_sub_value();         │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_adds_value();        │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_subs_value();        │
+│    ./patch/module/insn.c:    insn = aarch64_insn_encode_register(AARCH64_INS  │
+│    N_REGTYPE_RD, insn, dst);                                                  │
+│    ./patch/module/insn.c:    insn = aarch64_insn_encode_register(AARCH64_INS  │
+│    N_REGTYPE_RN, insn, src);                                                  │
+│    ./patch/module/insn.c:    insn = aarch64_insn_encode_register(AARCH64_INS  │
+│    N_REGTYPE_RM, insn, reg);                                                  │
+│    ./patch/module/insn.c:    return aarch64_insn_encode_immediate(AARCH64_IN  │
+│    SN_IMM_6, insn, shift);                                                    │
+│    ./patch/module/insn.c:u32 aarch64_insn_gen_data1(enum aarch64_insn_regist  │
+│    er dst, enum aarch64_insn_register src,                                    │
+│    ./patch/module/insn.c:                           enum aarch64_insn_varian  │
+│    t variant, enum aarch64_insn_data1_type type)                              │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_rev16_value();       │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_rev32_value();       │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_rev64_value();       │
+│    ./patch/module/insn.c:    insn = aarch64_insn_encode_register(AARCH64_INS  │
+│    N_REGTYPE_RD, insn, dst);                                                  │
+│    ./patch/module/insn.c:    return aarch64_insn_encode_register(AARCH64_INS  │
+│    N_REGTYPE_RN, insn, src);                                                  │
+│    ./patch/module/insn.c:u32 aarch64_insn_gen_data2(enum aarch64_insn_regist  │
+│    er dst, enum aarch64_insn_register src,                                    │
+│    ./patch/module/insn.c:                           enum aarch64_insn_regist  │
+│    er reg, enum aarch64_insn_variant variant,                                 │
+│    ./patch/module/insn.c:                           enum aarch64_insn_data2_  │
+│    type type)                                                                 │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_udiv_value();        │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_sdiv_value();        │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_lslv_value();        │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_lsrv_value();        │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_asrv_value();        │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_rorv_value();        │
+│    ./patch/module/insn.c:    insn = aarch64_insn_encode_register(AARCH64_INS  │
+│    N_REGTYPE_RD, insn, dst);                                                  │
+│    ./patch/module/insn.c:    insn = aarch64_insn_encode_register(AARCH64_INS  │
+│    N_REGTYPE_RN, insn, src);                                                  │
+│    ./patch/module/insn.c:    return aarch64_insn_encode_register(AARCH64_INS  │
+│    N_REGTYPE_RM, insn, reg);                                                  │
+│    ./patch/module/insn.c:u32 aarch64_insn_gen_data3(enum aarch64_insn_regist  │
+│    er dst, enum aarch64_insn_register src,                                    │
+│    ./patch/module/insn.c:                           enum aarch64_insn_regist  │
+│    er reg1, enum aarch64_insn_register reg2,                                  │
+│    ./patch/module/insn.c:                           enum aarch64_insn_varian  │
+│    t variant, enum aarch64_insn_data3_type type)                              │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_madd_value();        │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_msub_value();        │
+│    ./patch/module/insn.c:    insn = aarch64_insn_encode_register(AARCH64_INS  │
+│    N_REGTYPE_RD, insn, dst);                                                  │
+│    ./patch/module/insn.c:    insn = aarch64_insn_encode_register(AARCH64_INS  │
+│    N_REGTYPE_RA, insn, src);                                                  │
+│    ./patch/module/insn.c:    insn = aarch64_insn_encode_register(AARCH64_INS  │
+│    N_REGTYPE_RN, insn, reg1);                                                 │
+│    ./patch/module/insn.c:    return aarch64_insn_encode_register(AARCH64_INS  │
+│    N_REGTYPE_RM, insn, reg2);                                                 │
+│    ./patch/module/insn.c:u32 aarch64_insn_gen_logical_shifted_reg(enum aarch  │
+│    64_insn_register dst, enum aarch64_insn_register src,                      │
+│    ./patch/module/insn.c:                                         enum aarch  │
+│    64_insn_register reg, int shift, enum aarch64_insn_variant variant,        │
+│    ./patch/module/insn.c:                                         enum aarch  │
+│    64_insn_logic_type type)                                                   │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_and_value();         │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_bic_value();         │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_orr_value();         │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_orn_value();         │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_eor_value();         │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_eon_value();         │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_ands_value();        │
+│    ./patch/module/insn.c:        insn = aarch64_insn_get_bics_value();        │
+│    ./patch/module/insn.c:    insn = aarch64_insn_encode_register(AARCH64_INS  │
+│    N_REGTYPE_RD, insn, dst);                                                  │
+│    ./patch/module/insn.c:    insn = aarch64_insn_encode_register(AARCH64_INS  │
+│    N_REGTYPE_RN, insn, src);                                                  │
+│    ./patch/module/insn.c:    insn = aarch64_insn_encode_register(AARCH64_INS  │
+│    N_REGTYPE_RM, insn, reg);                                                  │
+│    ./patch/module/insn.c:    return aarch64_insn_encode_immediate(AARCH64_IN  │
+│    SN_IMM_6, insn, shift);                                                    │
+│    ./patch/module/insn.h:enum aarch64_insn_encoding_class                     │
+│    ./patch/module/insn.h:enum aarch                                           │
+╰───────────────────────────────────────────────────────────────────────────────╯
+✦ The search for arm64 and aarch64 confirms that the C code is also heavily
+  architecture-dependent. Here's a summary of the findings:
+
+   * Build Configuration: The Makefile and linker script (kpimg.lds) have the
+     aarch64 architecture hardcoded.
+   * Syscall Handling: Files like patch/common/syscall.c use arm64-specific
+     prefixes for system calls.
+   * Instruction-Level Hooking: The most significant dependency is in
+     patch/module/insn.c and patch/module/insn.h. These files are responsible for
+     reading, writing, and generating aarch64 instructions, which is the core of
+     the function hooking mechanism.
+
+  To support x86_64, this instruction-level engine must be completely rewritten.
+  Writing an x86_64 instruction encoder and decoder from scratch is a massive
+  undertaking.
+
+  A more practical approach is to integrate existing, well-tested libraries for
+  this purpose. I propose we use:
+
+   * Zydis: A fast and lightweight x86 disassembler.
+   * AsmJit: An x86_64 assembler library.
+
+  Both are licensed under terms compatible with this project's GPL-2.0 license.
+
+  Here is the plan:
+   1. I will create a new directory external to house these third-party libraries.
+   2. I will start by creating a new file, patch/module/insn_x86_64.c, which will
+      contain the x86_64 implementation of the instruction-handling functions, andI
+       will modify the build system to handle the new files and architecture.
+
+  This is still a very large task, but using these libraries makes it much more
+  achievable.
+
+  First, I will create the external directory.
+╭───────────────────────────────────────────────────────────────────────────────╮
+│ ✓  Shell mkdir external (Creating the 'external' directory for third-party l… │
+╰───────────────────────────────────────────────────────────────────────────────╯
+✦ I have created the external directory. Now, I will download the source code for
+  the Zydis and AsmJit libraries into this directory using git.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  how do i refactor the project to  supports the  x86_64 bzImage architecture and 
+  make it compatible  to patch your x86_64 kernel
+     bzimage
+
+✦ This is a significant and complex task that involves deep kernel-level
+  modifications. The project is tightly coupled with the arm64 architecture, so
+  adding x86_64 support requires substantial changes across the codebase.
+
+  I will guide you through the process, but it will be a multi-step journey.
+  Here's a high-level overview of the plan:
+
+   1. Analyze Architecture-Specific Code: We'll first identify all the parts of the
+      codebase that are specific to the arm64 architecture.
+   2. Implement `x86_64` Equivalents: For each identified part, we will need to
+      implement an equivalent for x86_64. This will involve writing new assembly ad
+       C code.
+   3. Refactor the Build System: The build scripts will need to be updated to
+      support conditional compilation for different architectures.
+
+  Let's start by identifying the arm64-specific assembly files. I'll search for
+  files with the .S extension.
+╭───────────────────────────────────────────────────────────────────────────────╮
+│ ✓  FindFiles '**/*.S'                                                         │
+│                                                                               │
+│    Found 3 matching file(s)                                                   │
+╰───────────────────────────────────────────────────────────────────────────────╯
+✦ I've found three assembly files that are written for arm64:
+
+   * kernel/base/setup1.S
+   * kernel/base/map1.S
+   * kernel/base/cache.S
+
+  These will need to be completely rewritten for x86_64.
+
+  To understand what needs to be changed, let's start by examining the contents
+  of kernel/base/setup1.S.
+╭───────────────────────────────────────────────────────────────────────────────╮
+│ ✓  ReadFile kernel/base/setup1.S                                              │
+╰───────────────────────────────────────────────────────────────────────────────╯
+✦ This file, kernel/base/setup1.S, is the entry point for the kernel patch and is
+  written entirely in arm64 assembly. It's responsible for the initial setup,
+  preparing memory maps, and hooking the kernel's paging initialization.
+
+  Here's a summary of its functions:
+
+   * `memcpy8`, `rmemcpy32`: Basic memory copy functions.
+   * `start_prepare`: Prepares data structures for the patch.
+   * `map_prepare`: Sets up memory mapping and hooks the kernel's paging_init
+     function. This is highly specific to arm64.
+   * `setup`: The main setup function that calls the preparation functions.
+   * `setup_entry`: The initial entry point of the patch.
+
+  To port this to x86_64, every function would need to be rewritten using x86_64
+  assembly, calling conventions, and memory addressing. The most complex part
+  would be rewriting map_prepare, as it involves hooking a critical part of the
+  kernel's boot process, which is fundamentally different between arm64 and
+  x86_64.
+
+  This single file demonstrates the significant effort required.
+
+  Next, I'll examine kernel/base/map1.S to see its purpose.
+╭───────────────────────────────────────────────────────────────────────────────╮
+│ ✓  ReadFile kernel/base/map1.S                                                │
+╰───────────────────────────────────────────────────────────────────────────────╯
+✦ The file kernel/base/map1.S is empty, which simplifies things slightly.
+
+  Now, let's examine the last assembly file, kernel/base/cache.S, to understand
+  its function.
+╭───────────────────────────────────────────────────────────────────────────────╮
+│ ✓  ReadFile kernel/base/cache.S                                               │
+╰───────────────────────────────────────────────────────────────────────────────╯
+✦ This file, kernel/base/cache.S, contains arm64-specific assembly code for
+  managing the CPU caches. These functions are essential for ensuring that any
+  modifications to the kernel code are correctly seen and executed by the CPU.
+
+  The functions in this file, such as flush_cache_all and flush_icache_range,
+  directly manipulate arm64 system registers and use arm64 cache maintenance
+  instructions.
+
+  Porting this to x86_64 would require a complete rewrite. x86_64 has a different
+   set of instructions for cache control (e.g., CLFLUSH, WBINVD). The entire
+  logic for cache management would need to be re-implemented from scratch to
+  match the x86_64 architecture.
+
+  All three assembly files (setup1.S, map1.S, and cache.S) are entirely
+  arm64-specific and would need to be rewritten for x86_64.
+
+  Now, I will move on to analyzing the C code to find other architecture-specific
+   parts. I'll start by searching for arm64 and aarch64 in the kernel directory.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ✦ The search for arm64 and aarch64 confirms that the C code is also heavily
+  architecture-dependent. Here's a summary of the findings:
+
+   * Build Configuration: The Makefile and linker script (kpimg.lds) have the
+     aarch64 architecture hardcoded.
+   * Syscall Handling: Files like patch/common/syscall.c use arm64-specific
+     prefixes for system calls.
+   * Instruction-Level Hooking: The most significant dependency is in
+     patch/module/insn.c and patch/module/insn.h. These files are responsible for
+     reading, writing, and generating aarch64 instructions, which is the core of
+     the function hooking mechanism.
+
+  To support x86_64, this instruction-level engine must be completely rewritten.
+  Writing an x86_64 instruction encoder and decoder from scratch is a massive
+  undertaking.
+
+  A more practical approach is to integrate existing, well-tested libraries for
+  this purpose. I propose we use:
+
+   * Zydis: A fast and lightweight x86 disassembler.
+   * AsmJit: An x86_64 assembler library.
+
+  Both are licensed under terms compatible with this project's GPL-2.0 license.
+
+  Here is the plan:
+   1. I will create a new directory external to house these third-party libraries.
+   2. I will start by creating a new file, patch/module/insn_x86_64.c, which will
+      contain the x86_64 implementation of the instruction-handling functions, andI
+       will modify the build system to handle the new files and architecture.
+
+  This is still a very large task, but using these libraries makes it much more
+  achievable.
+
+  First, I will create the external directory.

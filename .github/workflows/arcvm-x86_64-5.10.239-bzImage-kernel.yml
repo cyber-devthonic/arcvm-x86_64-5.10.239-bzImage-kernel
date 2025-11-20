@@ -1,36 +1,48 @@
-# This is a basic workflow to help you get started with Actions
+name: Patch ARCVM bzImage x86_64-5.10.239 with KPM
 
-name: CI
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  workflow_call:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  patch-kernel:
+    name: Download and Patch bzImage
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Download ARCVM bzImage
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          mkdir -p kernel_artifacts
+          cd kernel_artifacts
+          wget https://github.com/cyber-devthonic/arcvm-x86_64-5.10.239-bzImage-kernel/raw/main/bzImage
+          ls -lh bzImage
+
+      - name: Download SukiSU KPM Patch Tool
+        run: |
+          cd kernel_artifacts
+          wget https://raw.githubusercontent.com/ShirkNeko/SukiSU_patch/refs/heads/main/kpm/patch_linux -O patch
+          chmod +x patch
+          ls -lh patch
+
+      - name: Apply KPM Patch to bzImage
+        working-directory: kernel_artifacts
+        run: |
+          echo "Applying SukiSU-Ultra KPM patch to bzImage..."
+          ./patch || true
+
+          # Check if patch succeeded (creates obzImage)
+          if [ -f "obzImage" ]; then
+            echo "KPM patch applied successfully"
+            mv obzImage bzImage
+            echo "Replaced original bzImage with patched version"
+            ls -lh bzImage
+          else
+            echo "KPM patching may have failed - obzImage not found"
+            echo "Using original bzImage"
+          fi
+
+      - name: Upload Patched Kernel
+        uses: actions/upload-artifact@v4
+        with:
+          name: arcvm-x86-64-5.10.239-bzImage-KPM-patched
+          path: kernel_artifacts/bzImage

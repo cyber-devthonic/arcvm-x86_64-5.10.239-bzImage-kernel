@@ -27,7 +27,11 @@ jobs:
       - name: Apply KPM Patch to bzImage
         working-directory: kernel_artifacts
         run: |
-          echo "Applying SukiSU-Ultra KPM patch to bzImage..."
+          echo "Preparing bzImage for KPM patch application..."
+          mv bzImage Image
+          echo "Renamed bzImage to Image for patch compatibility"
+
+          echo "Applying SukiSU-Ultra KPM patch..."
           ./patch || true
 
           # Check if patch succeeded (creates obzImage)
@@ -38,7 +42,8 @@ jobs:
             ls -lh bzImage
           else
             echo "KPM patching may have failed - obzImage not found"
-            echo "Using original bzImage"
+            mv Image bzImage
+            echo "Using original bzImage (patch failed)"
           fi
 
       - name: Upload Patched Kernel
